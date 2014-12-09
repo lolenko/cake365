@@ -40,6 +40,10 @@ module.exports = {
     fat: {
       type: 'float'
     },
+    // жиры
+    water: {
+      type: 'float'
+    },
     // цена
     price: {
       type: 'integer'

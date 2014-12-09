@@ -33,5 +33,8 @@
     "url": "git://github.com/lolenko/Cake.git"
   },
   "author": "lolenko",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "crawler": "^0.4.1"
+  }
 }
