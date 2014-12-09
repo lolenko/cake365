@@ -11,36 +11,47 @@ module.exports = {
     // Название
     title: {
       type: 'string',
-      required: true
+      required: true,
+      unique: true,
+      maxLength: 150
     },
     // Категория
     category: {
-      type: 'string',
-      required: true
+      model: 'IngredientCategory'
     },
     // опичание
     description: {
-      type: 'string'
+      type: 'string',
+      maxLength: 1000
     },
     // Энергетическая ценность
     energy: {
-      type: 'integer',
-      required: true
+      type: 'integer'
     },
     // углеводы
     carbohydrate: {
-      type: 'float',
-      required: true
+      type: 'float'
     },
     // белки
     protein: {
-      type: 'float',
-      required: true
+      type: 'float'
     },
     // жиры
     fat: {
-      type: 'float',
-      required: true
+      type: 'float'
+    },
+    // цена
+    price: {
+      type: 'integer'
+    },
+    // полезность
+    health: {
+      type: 'integer'
+    },
+    // картинка
+    imageURL: {
+      type: 'string',
+      url: true
     }
   }
 };
