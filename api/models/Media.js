@@ -10,7 +10,18 @@ module.exports = {
   attributes: {
     type: {
       type: 'string',
-      enum: ['video', 'audio', 'image']
+      enum: ['video', 'audio', 'image'],
+      required: true
+    },
+    title: {
+      type: 'string'
+    },
+    description: {
+      type: 'string'
+    },
+    author: {
+      model: 'user',
+      required: true
     }
   }
 };

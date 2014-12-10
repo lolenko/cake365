@@ -17,6 +17,14 @@ module.exports = {
     // опичание
     description: {
       type: 'string'
+    },
+    // картинка
+    media: {
+      collection: 'media'
+    },
+    // главная картинка
+    mainImage: {
+      model: 'media'
     }
   }
 };

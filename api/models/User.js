@@ -16,6 +16,18 @@ module.exports = {
     password: {
       type: 'string',
       required: true
+    },
+    role: {
+      type: 'string',
+      enum: ['root', 'admin', 'moderator', 'user'],
+      protected: true
+    },
+    birthday: {
+      type: 'date'
+    },
+    sex: {
+      type: 'string',
+      enum: ['m', 'f']
     }
   }
 };
