@@ -53,9 +53,12 @@ module.exports = {
       type: 'integer'
     },
     // картинка
-    imageURL: {
-      type: 'string',
-      url: true
+    media: {
+      collection: 'media'
+    },
+    // главная картинка
+    mainImage: {
+      model: 'media'
     }
   }
 };

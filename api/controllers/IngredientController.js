@@ -9,7 +9,7 @@
 var Crawler = require("crawler");
 
 module.exports = {
-  grab: function() {
+  grab: function(req, res) {
     var c = new Crawler({
       forceUTF8: true,
       maxConnections : 10,
@@ -42,6 +42,7 @@ module.exports = {
     });
 
     c.queue('http://www.missfit.ru/diet/table-calory/');
+    res.ok();
   }
 };
 
