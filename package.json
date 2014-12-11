@@ -35,6 +35,7 @@
   "author": "lolenko",
   "license": "",
   "devDependencies": {
-    "crawler": "^0.4.1"
+    "crawler": "^0.4.1",
+    "jade": "^1.8.1"
   }
 }
