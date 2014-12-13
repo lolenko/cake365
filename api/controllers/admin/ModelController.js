@@ -13,8 +13,9 @@ module.exports = {
   },
 
   list: function(req, res) {
+    var modelName = req.param('model').toLowerCase();
     var Model;
-    if (Model = sails.models[req.param('model').toLowerCase()]) {
+    if (Model = sails.models[modelName]) {
       var page = parseInt(req.param('page'));
       page = isFinite(page) && page > 0 ? page : 1;
 
@@ -41,7 +42,8 @@ module.exports = {
               list: list,
               pages: pages,
               page: page,
-              limit: limit
+              limit: limit,
+              model: modelName
             });
           }).catch(function(err) {
             res.serverError(err);

@@ -1,22 +1,34 @@
 extends ../../admin
 
 block main
-  ul.pagination
+  ul.pagination.pull-left
     each page in pages
       if page.active
         li.active
-          a(href='?page=' + page.i)= page.i
+          a(href='?page=' + page.i + '&limit=' + limit)= page.i
       else
         li
-          a(href='?page=' + page.i)= page.i
+          a(href='?page=' + page.i + '&limit=' + limit)= page.i
+
+  ul.pagination.pull-right
+    each num in [15, 30, 50, 100]
+      if num == limit
+        li.active
+          a(href='?page=' + page + '&limit=' + num)= num
+      else
+        li
+          a(href='?page=' + page + '&limit=' + num)= num
+
   table.table.table-striped.table-hover
     thead
       th #
       th id
       th title
+      th date
     tbody
       each val, i in list
         tr
           td= (i + 1) + (page - 1) * limit
           td= val.id
           td= val.title
+          td= val.createdAt
