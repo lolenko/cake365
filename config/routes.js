@@ -34,7 +34,11 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+
+  '/admin': 'admin/ModelController.index',
+  '/admin/:model': 'admin/ModelController.list',
+  '/admin/:model/:id': 'admin/ModelController.edit'
 
   /***************************************************************************
   *                                                                          *

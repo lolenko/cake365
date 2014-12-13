@@ -1,0 +1,22 @@
+extends ../../admin
+
+block main
+  ul.pagination
+    each page in pages
+      if page.active
+        li.active
+          a(href='?page=' + page.i)= page.i
+      else
+        li
+          a(href='?page=' + page.i)= page.i
+  table.table.table-striped.table-hover
+    thead
+      th #
+      th id
+      th title
+    tbody
+      each val, i in list
+        tr
+          td= (i + 1) + (page - 1) * limit
+          td= val.id
+          td= val.title

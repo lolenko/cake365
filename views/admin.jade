@@ -1,0 +1,35 @@
+doctype html
+html(lang='ru')
+  head
+    title New Sails App
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css")
+
+  body
+    .col-md-3
+      .panel.panel-default
+        .panel-heading Выберите сущность
+        ul.nav.nav-pills.nav-stacked.panel-body
+          each val, index in models
+            li(role='presentation')
+              a(href= '/admin/' + val)= __('entity.' + val)
+    .col-md-9
+      .panel.panel-default
+        .panel-heading Сущность не выбрана
+        .panel-body
+          block main
+
+
+
+
+    // TEMPLATES
+    
+    // TEMPLATES END
+
+    //
+
+
+    // SCRIPTS
+    script(src="/js/dependencies/sails.io.js")
+    // SCRIPTS END

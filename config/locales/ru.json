@@ -1,0 +1,11 @@
+{
+	"Welcome": "Welcome",
+	"A brand new app.": "A brand new app.",
+  "entity": "entity",
+  "entity.comment": "комментарий",
+  "entity.ingredient": "ингридиент",
+  "entity.ingredientcategory": "категория ингридиента",
+  "entity.media": "медия",
+  "entity.recipe": "рецепт",
+  "entity.user": "пользователь"
+}
