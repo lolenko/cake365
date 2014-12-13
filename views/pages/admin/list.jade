@@ -29,6 +29,7 @@ block main
       each val, i in list
         tr
           td= (i + 1) + (page - 1) * limit
-          td= val.id
+          td
+            a(href='/admin/' + modelName + '/' + val.id)= val.id
           td= val.title
           td= val.createdAt

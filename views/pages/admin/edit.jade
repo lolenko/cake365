@@ -1,0 +1,26 @@
+extends ../../admin
+
+block main
+  .form-horizontal
+    each attr, key in attributes
+      .form-group
+        label.col-sm-2.control-label(for=key)= key
+        .col-sm-10
+          case attr.type
+            when 'text'
+              textarea.form-control(id=key, name=key)
+            when 'enum'
+              select.form-control(id=key, name=key)
+                each option in attr.options
+                  option(value=option)= option
+            when 'collection'
+              input.form-control(type='text', id=key, name=key)
+            when 'model'
+              input.form-control(type='text', id=key, name=key)
+            when 'float'
+            when 'integer'
+              input.form-control(type='number', id=key, name=key)
+            when 'string'
+              input.form-control(type='text', id=key, name=key)
+            default
+              input.form-control(type=attr.type, id=key, name=key)

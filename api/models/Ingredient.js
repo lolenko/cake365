@@ -29,9 +29,7 @@ module.exports = {
       type: 'integer'
     },
     // углеводы
-    carbohydrate: {
-      type: 'float'
-    },
+    carbohydrate: 'float',
     // белки
     protein: {
       type: 'float'

@@ -13,7 +13,7 @@ html(lang='ru')
           .panel-heading Выберите сущность
           ul.nav.nav-pills.nav-stacked.panel-body
             each val, index in models
-              li(class=val == model ? 'active' : 'unactive')
+              li(class=val == modelName ? 'active' : 'unactive')
                 a(href= '/admin/' + val)= __('entity.' + val)
       .col-md-9
         .panel.panel-default
