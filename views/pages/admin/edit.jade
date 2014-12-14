@@ -2,25 +2,25 @@ extends ../../admin
 
 block main
   .form-horizontal
-    each attr, key in attributes
+    each attr in model.attrs
       .form-group
-        label.col-sm-2.control-label(for=key)= key
+        label.col-sm-2.control-label(for=attr.name)= attr.name
         .col-sm-10
           case attr.type
             when 'text'
-              textarea.form-control(id=key, name=key)
+              textarea.form-control(id=attr.name, name=attr.name, readonly=attr.readonly)
             when 'enum'
-              select.form-control(id=key, name=key)
+              select.form-control(id=attr.name, name=attr.name, readonly=attr.readonly)
                 each option in attr.options
                   option(value=option)= option
             when 'collection'
-              input.form-control(type='text', id=key, name=key)
+              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly)
             when 'model'
-              input.form-control(type='text', id=key, name=key)
+              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly)
             when 'float'
             when 'integer'
-              input.form-control(type='number', id=key, name=key)
+              input.form-control(type='number', id=attr.name, name=attr.name, readonly=attr.readonly)
             when 'string'
-              input.form-control(type='text', id=key, name=key)
+              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly)
             default
-              input.form-control(type=attr.type, id=key, name=key)
+              input.form-control(type=attr.type, id=attr.name, name=attr.name, readonly=attr.readonly)

@@ -5,30 +5,82 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-function getUserViewAttrs(Model) {
-  var attrs = {};
-  _.forIn(Model.attributes, function(attr, attrName) {
-    attrs[attrName] = prepareAttrToView(attr);
+function getModelConfig(Model) {
+  var modelName = Model.adapter.collection;
+  var config = sails.config.admin.models;
+  var modelConfig = config[modelName] === undefined ? {} : config[modelName];
+  var generalConfig = config.general || {};
+
+  if (modelConfig === false) {
+    return null;
+  }
+
+  var modelAttrs = [];
+
+  if (_.isPlainObject(modelConfig) && Array.isArray(modelConfig.order)) {
+    modelAttrs = _.intersection(modelConfig.order, Object.getOwnPropertyNames(Model.attributes));
+  } else {
+    modelAttrs = Object.getOwnPropertyNames(Model.attributes);
+  }
+
+  sails.log.info(modelAttrs);
+
+  modelAttrs = modelAttrs.map(function(attrName) {
+    var attrVisibility = reduceAttrVisibility(
+      generalConfig[attrName],
+      modelConfig === 'read' ? 'read' : modelConfig[attrName]);
+
+    if (attrVisibility === false) {
+      return null;
+    }
+
+    var attr = {
+      name: attrName,
+      readonly: attrVisibility === 'read',
+      type: normalizeAttrType(Model.attributes[attrName])
+    };
+
+    if (attr.type == 'enum') {
+      attr.options = Model.attributes[attrName].enum;
+    }
+
+    return attr;
   });
-  ['id', 'createdAt', 'updatedAt'].forEach(function(val) {
-    delete attrs[val];
-  });
-  return attrs;
+
+  modelAttrs = _.compact(modelAttrs)
+
+  return {
+    name: modelName,
+    attrs: modelAttrs
+  };
 }
 
-function prepareAttrToView(attr) {
-  var _attr = {};
-  if (attr.hasOwnProperty('model')) {
-    _attr.type = 'model';
-  } else if (attr.hasOwnProperty('collection')) {
-    _attr.type = 'collection';
-  } else if (attr.hasOwnProperty('enum')) {
-    _attr.type = 'enum';
-    _attr.options = attr.enum;
-  } else {
-    _attr.type = typeof attr == 'string' ? attr : attr.type.toLowerCase();
+function reduceAttrVisibility(globalVisibility, localVisibility) {
+  if (localVisibility === true || localVisibility === false || localVisibility === 'read') {
+    return localVisibility;
   }
-  return _attr;
+
+  if (globalVisibility === true || globalVisibility === false || globalVisibility === 'read') {
+    return globalVisibility;
+  }
+
+  return true;
+}
+
+function normalizeAttrType(sailsAttr) {
+  if (typeof sailsAttr == 'string') {
+    return sailsAttr;
+  } else if (sailsAttr.hasOwnProperty('model')) {
+    return 'model';
+  } else if (sailsAttr.hasOwnProperty('collection')) {
+    return 'collection';
+  } else if (sailsAttr.hasOwnProperty('enum')) {
+    return 'enum';
+  } else if (sailsAttr.hasOwnProperty('type')){
+    return sailsAttr.type;
+  } else {
+    return 'string';
+  }
 }
 
 module.exports = {
@@ -90,15 +142,14 @@ module.exports = {
 
     Model.findOne(id)
       .then(function(model) {
-        var attributes = getUserViewAttrs(Model);
-        sails.log.info(attributes);
-        for (var field in attributes) {
-          attributes[field].value = model.hasOwnProperty(field) ? model[field] : undefined;
-        }
+        var modelConfig = getModelConfig(Model);
+        modelConfig.attrs.forEach(function(attr) {
+          attr.value = model.hasOwnProperty(attr.name) ? model[attr.name] : undefined;
+        });
+        sails.log.info(modelConfig);
         res.view('pages/admin/edit', {
           models: Object.getOwnPropertyNames(sails.models),
-          attributes: attributes,
-          modelName: modelName
+          model: modelConfig
         });
       })
       .catch(function(err) {
