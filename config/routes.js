@@ -36,9 +36,12 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  '/admin': 'admin/ModelController.index',
-  '/admin/:model': 'admin/ModelController.list',
-  '/admin/:model/:id': 'admin/ModelController.edit'
+  'GET /admin': 'admin/ModelController.index',
+  'GET /admin/:model': 'admin/ModelController.list',
+  'GET /admin/:model/new': 'admin/ModelController.new',
+  'POST /admin/:model/new': 'admin/ModelController.create',
+  'GET /admin/:model/:id': 'admin/ModelController.edit',
+  'POST /admin/:model/:id': 'admin/ModelController.save'
 
   /***************************************************************************
   *                                                                          *

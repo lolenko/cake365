@@ -155,6 +155,20 @@ module.exports = {
       .catch(function(err) {
         res.serverError(err);
       });
+  },
+
+  new: function(req, res) {
+    var modelName = req.param('model').toLowerCase();
+    var Model = sails.models[modelName];
+    if (!Model) {
+      return res.notFound();
+    }
+
+    res.view('pages/admin/edit', {
+      models: Object.getOwnPropertyNames(sails.models),
+      model: getModelConfig(Model)
+    });
   }
+
 };
 

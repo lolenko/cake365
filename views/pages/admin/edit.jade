@@ -8,19 +8,19 @@ block main
         .col-sm-10
           case attr.type
             when 'text'
-              textarea.form-control(id=attr.name, name=attr.name, readonly=attr.readonly)
+              textarea.form-control(id=attr.name, name=attr.name, readonly=attr.readonly)= attr.value
             when 'enum'
               select.form-control(id=attr.name, name=attr.name, readonly=attr.readonly)
                 each option in attr.options
                   option(value=option)= option
             when 'collection'
-              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly)
+              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'model'
-              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly)
+              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'float'
             when 'integer'
-              input.form-control(type='number', id=attr.name, name=attr.name, readonly=attr.readonly)
+              input.form-control(type='number', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'string'
-              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly)
+              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             default
-              input.form-control(type=attr.type, id=attr.name, name=attr.name, readonly=attr.readonly)
+              input.form-control(type=attr.type, id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
