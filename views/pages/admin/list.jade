@@ -1,6 +1,12 @@
 extends ../../admin
 
 block main
+  ol.breadcrumb
+    li.active= __('entity.' + model.name)
+    li: a(href='/admin/' + model.name + '/new')
+      span.glyphicon.glyphicon-plus
+      |  Новый
+
   ul.pagination.pull-left
     each page in pages
       if page.active
@@ -30,6 +36,6 @@ block main
         tr
           td= (i + 1) + (page - 1) * limit
           td
-            a(href='/admin/' + modelName + '/' + val.id)= val.id
+            a(href='/admin/' + model.name + '/' + val.id)= val.id
           td= val.title
           td= val.createdAt

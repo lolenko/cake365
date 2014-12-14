@@ -15,9 +15,7 @@ module.exports.admin = {
           'comment'
         ]
       }
-    ],
-
-    user: 'read'
+    ]
   }
 
 };

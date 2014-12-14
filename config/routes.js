@@ -41,7 +41,7 @@ module.exports.routes = {
   'GET /admin/:model/new': 'admin/ModelController.new',
   'POST /admin/:model/new': 'admin/ModelController.create',
   'GET /admin/:model/:id': 'admin/ModelController.edit',
-  'POST /admin/:model/:id': 'admin/ModelController.save'
+  'POST /admin/:model/:id': 'admin/ModelController.update'
 
   /***************************************************************************
   *                                                                          *

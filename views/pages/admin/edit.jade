@@ -1,7 +1,16 @@
 extends ../../admin
 
 block main
-  .form-horizontal
+  ol.breadcrumb
+    li: a(href='/admin/' + model.name)= __('entity.' + model.name)
+    li
+      span.glyphicon.glyphicon-pencil
+      |  Редактирование
+
+  form.form-horizontal(
+          method='POST',
+          action='/admin/' + model.name + '/' + action == 'create' ? 'new' : model.id
+        )
     each attr in model.attrs
       .form-group
         label.col-sm-2.control-label(for=attr.name)= attr.name
@@ -14,13 +23,19 @@ block main
                 each option in attr.options
                   option(value=option)= option
             when 'collection'
-              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
+              //input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'model'
-              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
+              //input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'float'
             when 'integer'
-              input.form-control(type='number', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
+              //input.form-control(type='number', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'string'
               input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             default
               input.form-control(type=attr.type, id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-default(type='submit') Сохранить
+        | &nbsp
+        button.btn.btn-danger(type='reset') Отмена

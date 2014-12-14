@@ -23,8 +23,6 @@ function getModelConfig(Model) {
     modelAttrs = Object.getOwnPropertyNames(Model.attributes);
   }
 
-  sails.log.info(modelAttrs);
-
   modelAttrs = modelAttrs.map(function(attrName) {
     var attrVisibility = reduceAttrVisibility(
       generalConfig[attrName],
@@ -124,7 +122,7 @@ module.exports = {
             pages: pages,
             page: page,
             limit: limit,
-            modelName: modelName
+            model: getModelConfig(Model)
           });
         }).catch(function(err) {
           res.serverError(err);
@@ -138,7 +136,7 @@ module.exports = {
     if (!Model) {
       return res.notFound();
     }
-    var id = (req.param('id'));
+    var id = req.param('id');
 
     Model.findOne(id)
       .then(function(model) {
@@ -146,10 +144,12 @@ module.exports = {
         modelConfig.attrs.forEach(function(attr) {
           attr.value = model.hasOwnProperty(attr.name) ? model[attr.name] : undefined;
         });
-        sails.log.info(modelConfig);
+        //sails.log.info(modelConfig);
+        modelConfig.id = id;
         res.view('pages/admin/edit', {
           models: Object.getOwnPropertyNames(sails.models),
-          model: modelConfig
+          model: modelConfig,
+          action: 'update'
         });
       })
       .catch(function(err) {
@@ -166,8 +166,48 @@ module.exports = {
 
     res.view('pages/admin/edit', {
       models: Object.getOwnPropertyNames(sails.models),
-      model: getModelConfig(Model)
+      model: getModelConfig(Model),
+      action: 'create'
     });
+  },
+
+  create: function(req, res) {
+    var modelName = req.param('model').toLowerCase();
+    var Model = sails.models[modelName];
+    if (!Model) {
+      return res.notFound();
+    }
+
+    var params = req.allParams();
+    delete params.id;
+
+    Model.create(params)
+      .then(function(model) {
+        res.redirect('/admin/' + modelName + '/' + model.id);
+      })
+      .catch(function(err) {
+        res.serverError(err);
+      });
+  },
+
+  update: function(req, res) {
+    var modelName = req.param('model').toLowerCase();
+    var Model = sails.models[modelName];
+    if (!Model) {
+      return res.notFound();
+    }
+
+    var id = req.param('id');
+    var params = req.allParams();
+    delete params.id;
+    Model.update(id, params)
+      .then(function(model) {
+        sails.log.info(model);
+        res.redirect('/admin/' + modelName + '/' + model[0].id);
+      })
+      .catch(function(err) {
+        res.serverError(err);
+      });
   }
 
 };

@@ -17,7 +17,7 @@ html(lang='ru')
                 a(href= '/admin/' + val)= __('entity.' + val)
       .col-md-9
         .panel.panel-default
-          .panel-heading Сущность не выбрана
+          .panel-heading= model && model.name ? __('entity.' + model.name) : 'Сущность не выбранна'
           .panel-body
             block main
 
