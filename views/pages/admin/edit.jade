@@ -31,6 +31,13 @@ block main
               input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'string'
               input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
+            when 'boolean'
+              div.radio: label
+                input(type='radio', id=attr.name, name=attr.name, readonly=attr.readonly, value='true', checked=attr.value)
+                |  Да
+              div.radio: label
+                input(type='radio', id=attr.name, name=attr.name, readonly=attr.readonly, value='false', checked=!attr.value)
+                |  Нет
             default
               input.form-control(type=attr.type, id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
 
