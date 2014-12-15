@@ -12,7 +12,7 @@ block main
           action='/admin/' + model.name + '/' + action == 'create' ? 'new' : model.id
         )
     each attr in model.attrs
-      .form-group
+      .form-group(class={'has-error': error && error.invalidAttributes[attr.name]})
         label.col-sm-2.control-label(for=attr.name)= attr.name
         .col-sm-10
           case attr.type
@@ -28,14 +28,21 @@ block main
               //input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'float'
             when 'integer'
-              //input.form-control(type='number', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
+              input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             when 'string'
               input.form-control(type='text', id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
             default
               input.form-control(type=attr.type, id=attr.name, name=attr.name, readonly=attr.readonly, value=attr.value)
 
-    .form-group
+          if (error && error.invalidAttributes[attr.name])
+            each err in error.invalidAttributes[attr.name]
+              .help-block= err.message
+
+
+    .form-group(class={'has-error': error && error.summary})
       .col-sm-offset-2.col-sm-10
+        if (error && error.summary)
+          .help-block= error.summary
         button.btn.btn-default(type='submit') Сохранить
         | &nbsp
         button.btn.btn-danger(type='reset') Отмена

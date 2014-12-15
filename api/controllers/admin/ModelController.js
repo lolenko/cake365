@@ -138,13 +138,13 @@ module.exports = {
     }
     var id = req.param('id');
 
-    Model.findOne(id)
+    Model.findOne(id).populateAll()
       .then(function(model) {
         var modelConfig = getModelConfig(Model);
         modelConfig.attrs.forEach(function(attr) {
           attr.value = model.hasOwnProperty(attr.name) ? model[attr.name] : undefined;
         });
-        //sails.log.info(modelConfig);
+        sails.log.info(modelConfig);
         modelConfig.id = id;
         res.view('pages/admin/edit', {
           models: Object.getOwnPropertyNames(sails.models),
@@ -186,7 +186,21 @@ module.exports = {
         res.redirect('/admin/' + modelName + '/' + model.id);
       })
       .catch(function(err) {
-        res.serverError(err);
+        var _err = err.toJSON();
+        if (_err.error === 'E_VALIDATION') {
+          var modelConfig = getModelConfig(Model);
+          modelConfig.attrs.forEach(function(attr) {
+            attr.value = params.hasOwnProperty(attr.name) ? params[attr.name] : undefined;
+          });
+          res.view('pages/admin/edit', {
+            models: Object.getOwnPropertyNames(sails.models),
+            model: modelConfig,
+            action: 'create',
+            error: _err
+          });
+        } else {
+          res.serverError(err);
+        }
       });
   },
 
@@ -199,14 +213,30 @@ module.exports = {
 
     var id = req.param('id');
     var params = req.allParams();
+    sails.log.info(params);
     delete params.id;
     Model.update(id, params)
       .then(function(model) {
-        sails.log.info(model);
+        sails.log.info(params);
         res.redirect('/admin/' + modelName + '/' + model[0].id);
       })
       .catch(function(err) {
-        res.serverError(err);
+        var _err = err.toJSON();
+        if (_err.error === 'E_VALIDATION') {
+          var modelConfig = getModelConfig(Model);
+          sails.log.info(params);
+          modelConfig.attrs.forEach(function(attr) {
+            attr.value = params.hasOwnProperty(attr.name) ? params[attr.name] : undefined;
+          });
+          res.view('pages/admin/edit', {
+            models: Object.getOwnPropertyNames(sails.models),
+            model: modelConfig,
+            action: 'update',
+            error: _err
+          });
+        } else {
+          res.serverError(err);
+        }
       });
   }
 
