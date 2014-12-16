@@ -15,6 +15,11 @@ module.exports.models = {
     publicate: 'boolean'
   },
 
+  beforeValidate: function(values, cb) {
+    sails.log.info(values);
+    cb();
+  },
+
   /***************************************************************************
   *                                                                          *
   * Your app's default connection. i.e. the name of one of your app's        *

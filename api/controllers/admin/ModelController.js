@@ -81,6 +81,22 @@ function normalizeAttrType(sailsAttr) {
   }
 }
 
+function cleanHtmlFormParams(params) {
+  for (var param in params) {
+    if (params.hasOwnProperty(param)) {
+      var pVal = params[param];
+      if (typeof pVal === 'string') {
+        pVal = pVal.trim();
+        if (pVal === '') {
+          pVal = null
+        }
+        params[param] = pVal;
+      }
+    }
+  }
+  return params;
+}
+
 module.exports = {
   index: function(req, res) {
     return res.view('pages/admin/index', {
@@ -181,6 +197,8 @@ module.exports = {
     var params = req.allParams();
     delete params.id;
 
+    var params = cleanHtmlFormParams(params);
+
     Model.create(params)
       .then(function(model) {
         res.redirect('/admin/' + modelName + '/' + model.id);
@@ -213,18 +231,16 @@ module.exports = {
 
     var id = req.param('id');
     var params = req.allParams();
-    sails.log.info(params);
     delete params.id;
+    var params = cleanHtmlFormParams(params);
     Model.update(id, params)
       .then(function(model) {
-        sails.log.info(params);
         res.redirect('/admin/' + modelName + '/' + model[0].id);
       })
       .catch(function(err) {
         var _err = err.toJSON();
         if (_err.error === 'E_VALIDATION') {
           var modelConfig = getModelConfig(Model);
-          sails.log.info(params);
           modelConfig.attrs.forEach(function(attr) {
             attr.value = params.hasOwnProperty(attr.name) ? params[attr.name] : undefined;
           });
