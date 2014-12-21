@@ -1,0 +1,210 @@
+//
+// Variables
+// --------------------------------------------------
+
+// !!!BASE!!!
+
+//== Base Colors ==
+@gray-base:              #000;
+@gray-darker:            lighten(@gray-base, 13.5%); // #222
+@gray-dark:              lighten(@gray-base, 20%);   // #333
+@gray:                   lighten(@gray-base, 33.5%); // #555
+@gray-light:             lighten(@gray-base, 46.7%); // #777
+@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+
+@brand-primary:         darken(#428bca, 6.5%);
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
+
+@bg-color: #fff;
+@text-color: @gray-dark;
+@link-color: @brand-primary;
+@link-color_hover: darken(@link-color, 15%);
+
+@__color: #333;
+@__bg-color: #fff;
+@__border-color: #ccc;
+
+@__color_primary: #fff;
+@__bg-color_primary: @brand-primary;
+@__border-color_primary: darken(@btn__bg-color_primary, 5%);
+
+@__color_success: #3c763d;
+@__bg-color_success: #dff0d8;
+@__border-color_success: darken(@__bg-color_success, 5%);
+
+@__color_info: #31708f;
+@__bg-color_info: #d9edf7;
+@__border-color_info: darken(spin(@__bg-color_info, -10), 7%);
+
+@__color_warning: #8a6d3b;
+@__bg-color_warning: #fcf8e3;
+@__border-color_warning: darken(@btn__bg-color_warning, 5%);
+
+@__color_danger: #a94442;
+@__bg-color_danger: #f2dede;
+@__border-color_danger: darken(spin(@__bg-color_danger, -10), 5%);
+
+
+//== Base sizes ==
+@__font-size:          14px;
+@__line-height:        1.428571429; // 20/14
+@__vpadding: 6px;
+@__hpadding: 12px;
+@__border-radius:             4px;
+
+@__font-size_large:         ceil((@font-size * 1.25)); // ~18px
+@__line-height_large:         1.33;
+@__vpadding_large: 10px;
+@__hpadding_large: 16px;
+@__border-radius_large:       6px;
+
+
+@__font-size_small:         ceil((@font-size * 0.85)); // ~12px
+@__line-height_small:         1.5;
+@__vpadding_small: 5px;
+@__hpadding_small: 10px;
+@__border-radius_small:       3px;
+
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+@__line-height_computed:    floor((@__font-size * @__line-height)); // ~20px
+
+@h1__font-size:            floor((@font-size * 2.6)); // ~36px
+@h2__font-size:            floor((@font-size * 2.15)); // ~30px
+@h3__font-size:            ceil((@font-size * 1.7)); // ~24px
+@h4__font-size:            ceil((@font-size * 1.25)); // ~18px
+@h5__font-size:            @font-size;
+@h6__font-size:            ceil((@font-size * 0.85)); // ~12px
+
+@headings__font-family:    inherit;
+@headings__font-weight:    500;
+@headings__line-height:    1.1;
+@headings__color:          inherit;
+
+// !!!BUTTONS!!!
+
+//== Buttons Colors ==
+@btn__color: #333;
+@btn__bg-color: #fff;
+@btn__border-color: #ccc;
+
+@btn__color_primary: #fff;
+@btn__bg-color_primary: @brand-primary;
+@btn__border-color_primary: darken(@btn__bg-color_primary, 5%);
+
+@btn__color_success: #fff;
+@btn__bg-color_success: @brand-success;
+@btn__border-color_success: darken(@btn__bg-color_success, 5%);
+
+@btn__color_info: #fff;
+@btn__bg-color_info: @brand-info;
+@btn__border-color_info: darken(@btn__bg-color_info, 5%);
+
+@btn__color_warning: #fff;
+@btn__bg-color_warning: @brand-warning;
+@btn__border-color_warning: darken(@btn__bg-color_warning, 5%);
+
+@btn__color_danger: #fff;
+@btn__bg-color_danger: @brand-danger;
+@btn__border-color_danger: darken(@btn__bg-color_danger, 5%);
+
+//== Buttons sizes ==
+@btn__font-size: @__font-size;
+@btn__line-height: @__line-height;
+@btn__vpadding: @__vpadding;
+@btn__hpadding: @__hpadding;
+@btn__border-radius: @__border-radius;
+
+@btn__font-size_large: @__font-size_large;
+@btn__line-height_large: @__line-height_large;
+@btn__vpadding_large: @__vpadding_large;
+@btn__hpadding_large: @__hpadding_large;
+@btn__border-radius_large: @__border-radius_large;
+
+@btn__font-size_small: @__font-size_small;
+@btn__line-height_small: @__line-height_small;
+@btn__vpadding_small: @__vpadding_small;
+@btn__hpadding_small: @__hpadding_small;
+@btn__border-radius_small: @__border-radius_small;
+
+
+// !!!INPUTS!!!
+
+//== Inputs colors
+@input__color: @gray;
+@input__bg-color: #fff;
+@input__border-color: #ccc;
+
+@input__color_danger: #fff;
+@input__bg-color_danger: @brand-danger;
+@input__border-color_danger: darken(@btn__bg-color_danger, 5%);
+
+//== Inputs sizes
+@input__font-size: @__font-size;
+@input__height: (@__line-height_computed + (@__vpadding * 2) + 2);
+@input__line-height: @__line-height;
+@input__vpadding: @__vpadding;
+@input__hpadding: @__hpadding;
+@input__border-radius: @__border-radius;
+
+@input__font-size_large: @__font-size_large;
+@input__height_large: (ceil(@__font-size_large * @__line-height_large) + (@__vpadding_large * 2) + 2);
+@input__line-height_large: @__line-height_large;
+@input__vpadding_large: @__vpadding_large;
+@input__hpadding_large: @__hpadding_large;
+@input__border-radius_large: @__border-radius_large;
+
+@input__font-size_small: @__font-size_small;
+@input__height_small: (floor(@__font-size_small * @__line-height_small) + (@__vpadding_small * 2) + 2);
+@input__line-height_small: @__line-height_small;
+@input__vpadding_small: @__vpadding_small;
+@input__hpadding_small: @__hpadding_small;
+@input__border-radius_small: @__border-radius_small;
+
+
+// !!!TABLES!!!
+@table__cell-padding:            8px;
+@table__bg-color:                      transparent;
+@table__bg-color_accent:               #f9f9f9;
+@table__bg-color_hover:                #f5f5f5;
+@table__bg-color_active:               @table-bg-hover;
+@table__border-color:            #ddd;
+
+
+//-- Z-index master list
+@zindex-navbar:            1000;
+@zindex-dropdown:          1000;
+@zindex-popover:           1060;
+@zindex-tooltip:           1070;
+@zindex-navbar-fixed:      1030;
+@zindex-modal:             1040;
+
+
+//== Media queries breakpoints
+// TODO
+
+
+//== Grid
+@grid-columns:              12;
+@grid-vgap:         30px;
+
+//== Container sizes
+@content-width_tiny:             (360px + @grid-vgap);
+@content-width_small:             (720px + @grid-vgap);
+@content-width:            (940px + @grid-vgap);
+@content-width_large:      (1140px + @grid-vgap);
+
+//== Fonts
+@__font-family_sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@__font-family_serif:       Georgia, "Times New Roman", Times, serif;
+@__font-family_monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+@__font-family:        @__font-family_sans-serif;
+
+//== Icons
+@icon-font-path:          "../fonts/";
+@icon-font-name:          "glyphicons-halflings-regular";
+@icon-font-svg-id:        "glyphicons_halflingsregular";
+
+
