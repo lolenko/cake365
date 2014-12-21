@@ -50,20 +50,26 @@
 //== Base sizes ==
 @__font-size: 14px;
 @__line-height: 1.428571429;  // 20/14
-@__vpadding: 6px;
-@__hpadding: 12px;
+@__v-padding: 6px;
+@__h-padding: 12px;
+@__v-gutter: 25px;
+@__h-gutter: 25px;
 @__border-radius: 4px;
 
 @__font-size_large: ceil((@font-size * 1.25));  // ~18px
 @__line-height_large: 1.33;
-@__vpadding_large: 10px;
-@__hpadding_large: 16px;
+@__v-padding_large: 10px;
+@__h-padding_large: 16px;
+@__v-gutter_large: 35px;
+@__h-gutter_large: 35px;
 @__border-radius_large: 6px;
 
 @__font-size_small: ceil((@font-size * 0.85));  // ~12px
 @__line-height_small: 1.5;
-@__vpadding_small: 5px;
-@__hpadding_small: 10px;
+@__v-padding_small: 5px;
+@__h-padding_small: 10px;
+@__v-gutter_small: 10px;
+@__h-gutter_small: 10px;
 @__border-radius_small: 3px;
 
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
@@ -111,20 +117,20 @@
 //== Buttons sizes ==
 @btn__font-size: @__font-size;
 @btn__line-height: @__line-height;
-@btn__vpadding: @__vpadding;
-@btn__hpadding: @__hpadding;
+@btn__v-padding: @__v-padding;
+@btn__h-padding: @__h-padding;
 @btn__border-radius: @__border-radius;
 
 @btn__font-size_large: @__font-size_large;
 @btn__line-height_large: @__line-height_large;
-@btn__vpadding_large: @__vpadding_large;
-@btn__hpadding_large: @__hpadding_large;
+@btn__v-padding_large: @__v-padding_large;
+@btn__h-padding_large: @__h-padding_large;
 @btn__border-radius_large: @__border-radius_large;
 
 @btn__font-size_small: @__font-size_small;
 @btn__line-height_small: @__line-height_small;
-@btn__vpadding_small: @__vpadding_small;
-@btn__hpadding_small: @__hpadding_small;
+@btn__v-padding_small: @__v-padding_small;
+@btn__h-padding_small: @__h-padding_small;
 @btn__border-radius_small: @__border-radius_small;
 
 // !!!INPUTS!!!
@@ -140,24 +146,24 @@
 
 //== Inputs sizes
 @input__font-size: @__font-size;
-@input__height: (@__line-height_computed + (@__vpadding * 2) + 2);
+@input__height: (@__line-height_computed + (@__v-padding * 2) + 2);
 @input__line-height: @__line-height;
-@input__vpadding: @__vpadding;
-@input__hpadding: @__hpadding;
+@input__v-padding: @__v-padding;
+@input__h-padding: @__h-padding;
 @input__border-radius: @__border-radius;
 
 @input__font-size_large: @__font-size_large;
-@input__height_large: (ceil(@__font-size_large * @__line-height_large) + (@__vpadding_large * 2) + 2);
+@input__height_large: (ceil(@__font-size_large * @__line-height_large) + (@__v-padding_large * 2) + 2);
 @input__line-height_large: @__line-height_large;
-@input__vpadding_large: @__vpadding_large;
-@input__hpadding_large: @__hpadding_large;
+@input__v-padding_large: @__v-padding_large;
+@input__h-padding_large: @__h-padding_large;
 @input__border-radius_large: @__border-radius_large;
 
 @input__font-size_small: @__font-size_small;
-@input__height_small: (floor(@__font-size_small * @__line-height_small) + (@__vpadding_small * 2) + 2);
+@input__height_small: (floor(@__font-size_small * @__line-height_small) + (@__v-padding_small * 2) + 2);
 @input__line-height_small: @__line-height_small;
-@input__vpadding_small: @__vpadding_small;
-@input__hpadding_small: @__hpadding_small;
+@input__v-padding_small: @__v-padding_small;
+@input__h-padding_small: @__h-padding_small;
 @input__border-radius_small: @__border-radius_small;
 
 // !!!TABLES!!!
@@ -187,10 +193,6 @@
 @breakpoint-small-max: (@breakpoint-medium - 1);
 @breakpoint-medium-max: (@breakpoint-large - 1);
 @breakpoint-large-max: (@breakpoint-xlarge - 1);
-
-//== Grid
-@grid-columns: 12;
-@grid-vgap: 30px;
 
 //== Container sizes
 @content-width_tiny: (360px + @grid-vgap);
