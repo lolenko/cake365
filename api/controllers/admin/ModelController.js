@@ -99,7 +99,7 @@ function cleanHtmlFormParams(params) {
 
 module.exports = {
   index: function(req, res) {
-    return res.view('pages/admin/index', {
+    return res.view('admin/index', {
       models: Object.getOwnPropertyNames(sails.models)
     });
   },
@@ -132,7 +132,7 @@ module.exports = {
       Model.find()
         .paginate({page: page, limit: limit})
         .then(function(list) {
-          res.view('pages/admin/list', {
+          res.view('admin/list', {
             models: Object.getOwnPropertyNames(sails.models),
             list: list,
             pages: pages,
@@ -162,7 +162,7 @@ module.exports = {
         });
         sails.log.info(modelConfig);
         modelConfig.id = id;
-        res.view('pages/admin/edit', {
+        res.view('admin/edit', {
           models: Object.getOwnPropertyNames(sails.models),
           model: modelConfig,
           action: 'update'
@@ -180,7 +180,7 @@ module.exports = {
       return res.notFound();
     }
 
-    res.view('pages/admin/edit', {
+    res.view('admin/edit', {
       models: Object.getOwnPropertyNames(sails.models),
       model: getModelConfig(Model),
       action: 'create'
@@ -210,7 +210,7 @@ module.exports = {
           modelConfig.attrs.forEach(function(attr) {
             attr.value = params.hasOwnProperty(attr.name) ? params[attr.name] : undefined;
           });
-          res.view('pages/admin/edit', {
+          res.view('admin/edit', {
             models: Object.getOwnPropertyNames(sails.models),
             model: modelConfig,
             action: 'create',
@@ -244,7 +244,7 @@ module.exports = {
           modelConfig.attrs.forEach(function(attr) {
             attr.value = params.hasOwnProperty(attr.name) ? params[attr.name] : undefined;
           });
-          res.view('pages/admin/edit', {
+          res.view('admin/edit', {
             models: Object.getOwnPropertyNames(sails.models),
             model: modelConfig,
             action: 'update',
