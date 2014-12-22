@@ -160,7 +160,6 @@ module.exports = {
         modelConfig.attrs.forEach(function(attr) {
           attr.value = model.hasOwnProperty(attr.name) ? model[attr.name] : undefined;
         });
-        sails.log.info(modelConfig);
         modelConfig.id = id;
         res.view('admin/edit', {
           models: Object.getOwnPropertyNames(sails.models),
