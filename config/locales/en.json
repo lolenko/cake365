@@ -1,4 +1,11 @@
 {
 	"Welcome": "Welcome",
-	"A brand new app.": "A brand new app."
+	"A brand new app.": "A brand new app.",
+  "entity": "entity",
+  "entity.comment": "comment",
+  "entity.ingredient": "ingredient",
+  "entity.ingredientcategory": "ingredient category",
+  "entity.media": "media",
+  "entity.recipe": "recipe",
+  "entity.user": "user"
 }

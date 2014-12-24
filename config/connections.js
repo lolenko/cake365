@@ -32,6 +32,10 @@ module.exports.connections = {
     adapter: 'sails-disk'
   },
 
+  localMemoryDb: {
+    adapter: 'sails-memory'
+  },
+
   /***************************************************************************
   *                                                                          *
   * MySQL is the world's most popular relational database.                   *
@@ -60,6 +64,15 @@ module.exports.connections = {
     adapter: 'sails-mongo',
     host: 'localhost',
     port: 27017,
+    // user: 'username',
+    // password: 'password',
+    // database: 'your_mongo_db_name_here'
+  },
+
+  someRedisServer: {
+    adapter: 'sails-redis',
+    host: 'localhost',
+    port: 6379,
     // user: 'username',
     // password: 'password',
     // database: 'your_mongo_db_name_here'
