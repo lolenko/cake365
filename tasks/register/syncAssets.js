@@ -8,7 +8,6 @@ module.exports = function (gulp, plugins) {
 			// 'coffee:dev',
 			'compileAssets',
 			'images',
-			'linkAssets',
 			cb
 		);
 	});

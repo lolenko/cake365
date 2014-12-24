@@ -4,7 +4,6 @@ module.exports = function (gulp, plugins) {
 			'compileAssets',
 			'concat:js',
 			'uglify:dist',
-			'linkAssetsBuildProd',
 			'clean:build',
 			'copy:build',
 			cb

@@ -32,7 +32,7 @@ module.exports = function(gulp, plugins, growl) {
       'views/blocks/**/*.css'
     ],{ base: "views" })
       .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
-      .pipe(plugins.changed('styles', {extension: '.less'}))
+      .pipe(plugins.changed('.tmp/public', {extension: '.css'}))
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.if('!vars.less', plugins.insert.prepend('@import "vars";')))
       .pipe(plugins.less({

@@ -4,8 +4,6 @@ module.exports = function (gulp, plugins) {
 			'compileAssets',
 			'concat:js',
 			'uglify:dist',
-			'sails-linker-gulp:prodAssets',
-			'sails-linker-gulp:prodViews',
 			cb
 		);
 	});
