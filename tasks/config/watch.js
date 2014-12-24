@@ -19,10 +19,10 @@ module.exports = function(gulp, plugins, growl) {
 					server.changed(file.path);
 				});
 	});
-	
+
 	gulp.task('watch:assets', function() {
 		// Watch assets
-		return gulp.watch(['assets/**/*', 'tasks/pipeline.js'], ['syncAssets'])
+		return gulp.watch(['views/**/*.{less,css,js,png,jpg,svg}', 'tasks/pipeline.js'], ['syncAssets'])
 				.on('change', function(file) {
 					server.changed(file.path);
 				});
