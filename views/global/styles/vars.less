@@ -58,7 +58,7 @@
 @__h-gutter: 25px;
 @__border-radius: 4px;
 
-@__font-size_large: ceil((@font-size * 1.25));  // ~18px
+@__font-size_large: ceil((@__font-size * 1.25));  // ~18px
 @__line-height_large: 1.33;
 @__v-padding_large: 10px;
 @__h-padding_large: 16px;
@@ -66,7 +66,7 @@
 @__h-gutter_large: 35px;
 @__border-radius_large: 6px;
 
-@__font-size_small: ceil((@font-size * 0.85));  // ~12px
+@__font-size_small: ceil((@__font-size * 0.85));  // ~12px
 @__line-height_small: 1.5;
 @__v-padding_small: 5px;
 @__h-padding_small: 10px;
@@ -77,12 +77,12 @@
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @__line-height_computed: floor((@__font-size * @__line-height));  // ~20px
 
-@h1__font-size: floor((@font-size * 2.6));  // ~36px
-@h2__font-size: floor((@font-size * 2.15));  // ~30px
-@h3__font-size: ceil((@font-size * 1.7));  // ~24px
-@h4__font-size: ceil((@font-size * 1.25));  // ~18px
-@h5__font-size: @font-size;
-@h6__font-size: ceil((@font-size * 0.85));  // ~12px
+@h1__font-size: floor((@__font-size * 2.6));  // ~36px
+@h2__font-size: floor((@__font-size * 2.15));  // ~30px
+@h3__font-size: ceil((@__font-size * 1.7));  // ~24px
+@h4__font-size: ceil((@__font-size * 1.25));  // ~18px
+@h5__font-size: @__font-size;
+@h6__font-size: ceil((@__font-size * 0.85));  // ~12px
 
 @headings__font-family: inherit;
 @headings__font-weight: 500;
@@ -173,7 +173,7 @@
 @table__bg-color: transparent;
 @table__bg-color_accent: #f9f9f9;
 @table__bg-color_hover: #f5f5f5;
-@table__bg-color_active: @table-bg-hover;
+@table__bg-color_active: @table__bg-color_hover;
 @table__border-color: #ddd;
 
 //-- Z-index master list
@@ -197,10 +197,10 @@
 @breakpoint-large-max: (@breakpoint-xlarge - 1);
 
 //== Container sizes
-@content-width_tiny: (360px + @grid-vgap);
-@content-width_small: (720px + @grid-vgap);
-@content-width: (940px + @grid-vgap);
-@content-width_large: (1140px + @grid-vgap);
+@content-width_tiny: (360px + @__v-gutter);
+@content-width_small: (720px + @__v-gutter);
+@content-width: (940px + @__v-gutter);
+@content-width_large: (1140px + @__v-gutter);
 
 //== Fonts
 @__font-family_sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -212,5 +212,4 @@
 @icon-font-path: "../fonts/";
 @icon-font-name: "glyphicons-halflings-regular";
 @icon-font-svg-id: "glyphicons_halflingsregular";
-
 
