@@ -3,6 +3,7 @@ module.exports = function (gulp, plugins) {
 		plugins.sequence(
 			'clean:dev',
 			'styles:dev',
+			'scripts:dev',
 			//'copy:dev',
 			cb
 		);
