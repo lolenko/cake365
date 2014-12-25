@@ -5,16 +5,17 @@ html
       title New Sails App
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
     block styles
-      // STYLES-DEBUG
-      link(rel="stylesheet", href="/global/styles/normalize.css")
-      link(rel="stylesheet", href="/global/styles/reset.css")
-      link(rel="stylesheet", href="/global/styles/vars.css")
-      link(rel="stylesheet", href="/blocks/block-1.css")
-      // STYLES-DEBUG END
-
-      // STYLES-PRODUCTION
-      link(rel="stylesheet", href="/production/styles.min.css")
-      // STYLES-PRODUCTION END
+      if _debug === true
+        // STYLES-DEBUG
+        link(rel="stylesheet", href="/global/styles/normalize.css")
+        link(rel="stylesheet", href="/global/styles/reset.css")
+        link(rel="stylesheet", href="/global/styles/vars.css")
+        link(rel="stylesheet", href="/blocks/block-1.css")
+        // STYLES-DEBUG END
+      else
+        // STYLES-PRODUCTION
+        link(rel="stylesheet", href="/production/styles.min.css")
+        // STYLES-PRODUCTION END
 
   body
     block body
