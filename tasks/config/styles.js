@@ -43,11 +43,11 @@ module.exports = function(gulp, plugins, growl) {
       .pipe(plugins.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
       .pipe(gulp.dest('.tmp/public'))
       // Concatenate And Minify Styles
-      .pipe(plugins.concat('production.css'))
+      .pipe(plugins.concat('styles.css'))
       .pipe(plugins.if('*.css', plugins.csso()))
       .pipe(plugins.rename({ suffix: '.min' }))
       .pipe(plugins.sourcemaps.write())
-      .pipe(gulp.dest('.tmp/public'))
+      .pipe(gulp.dest('.tmp/public/production'))
       .pipe(plugins.size({title: 'styles'}))
       .pipe(plugins.if(growl, plugins.notify({ message: 'less dev task complete' })));
   });

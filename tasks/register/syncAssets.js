@@ -7,6 +7,7 @@ module.exports = function (gulp, plugins) {
 			// 'sync:dev',
 			// 'coffee:dev',
 			'compileAssets',
+      'sails-linker-gulp',
 			'images',
 			cb
 		);

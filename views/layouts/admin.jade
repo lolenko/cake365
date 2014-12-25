@@ -1,35 +1,21 @@
-doctype html
-html(lang='ru')
-  head
-    title New Sails App
-    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css")
-    // STYLES
+extends layout
 
-    // STYLES END
+append styles
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css")
 
-  body
-    .container
-      .col-md-3
-        .panel.panel-default
-          .panel-heading Выберите сущность
-          ul.nav.nav-pills.nav-stacked.panel-body
-            each val, index in models
-              li(class=val == modelName ? 'active' : 'unactive')
-                a(href= '/admin/' + val)= __('entity.' + val)
-      .col-md-9
-        .panel.panel-default
-          .panel-heading= model && model.name ? __('entity.' + model.name) : 'Сущность не выбранна'
-          .panel-body
-            block main
+block body
+  .container
+    .col-md-3
+      .panel.panel-default
+        .panel-heading Выберите сущность
+        ul.nav.nav-pills.nav-stacked.panel-body
+          each val, index in models
+            li(class=val == modelName ? 'active' : 'unactive')
+              a(href= '/admin/' + val)= __('entity.' + val)
+    .col-md-9
+      .panel.panel-default
+        .panel-heading= model && model.name ? __('entity.' + model.name) : 'Сущность не выбранна'
+        .panel-body
+          block main
 
-
-    // TEMPLATES
-
-    // TEMPLATES END
-
-
-    // SCRIPTS
-
-    // SCRIPTS END

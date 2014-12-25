@@ -4,6 +4,7 @@ module.exports = function (gulp, plugins) {
 			'compileAssets',
 			'concat:js',
 			'uglify:dist',
+      'sails-linker-gulp',
 			'clean:build',
 			'copy:build',
 			cb
