@@ -1,0 +1,19 @@
+.generate-column(@n, @i: 1) when (@i =< @n) {
+  .l-column_col_@{i} {
+    width: (@i * 100% / @n);
+  }
+  .generate-column(@n, (@i + 1));
+}
+
+.l-column {
+  float: left;
+  padding-left: (@__v-gutter / 2);
+  padding-right: (@__v-gutter / 2);
+
+  &_gutter_no {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.generate-column(12);
