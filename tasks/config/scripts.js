@@ -18,6 +18,8 @@ module.exports = function(gulp, plugins, growl) {
       'views/blocks/**/*.js'
     ],{ base: "views" })
       .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
+      //.pipe(plugins.jshint('.jshintrc'))
+      //.pipe(plugins.jshint.reporter('default'))
       .pipe(plugins.changed('.tmp/public'))
       .pipe(plugins.sourcemaps.init())
       .pipe(plugins.if('!**/vendor/**/*.js', plugins['6to5']({modules: 'amd'})))
