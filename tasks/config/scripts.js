@@ -20,7 +20,7 @@ module.exports = function(gulp, plugins, growl) {
       .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error: <%= error.message %>")}))
       .pipe(plugins.changed('.tmp/public'))
       .pipe(plugins.sourcemaps.init())
-      .pipe(plugins.if('!**/vendor/**/*.js', plugins['6to5']()))
+      .pipe(plugins.if('!**/vendor/**/*.js', plugins['6to5']({modules: 'amd'})))
       .pipe(gulp.dest('.tmp/public'))
       .pipe(plugins.uglify(/* {mangle: true} */))
       .pipe(plugins.sourcemaps.write())
