@@ -6,14 +6,14 @@ append styles
 
 block body
   +l-container
-    .col-md-3
+    +l-column.l-column_col_3
       .panel.panel-default
         .panel-heading Выберите сущность
         ul.nav.nav-pills.nav-stacked.panel-body
           each val, index in models
             li(class=val == modelName ? 'active' : 'unactive')
               a(href= '/admin/' + val)= __('entity.' + val)
-    .col-md-9
+    +l-column.l-column_col_9
       .panel.panel-default
         .panel-heading= model && model.name ? __('entity.' + model.name) : 'Сущность не выбранна'
         .panel-body

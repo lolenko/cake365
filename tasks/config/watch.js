@@ -22,7 +22,7 @@ module.exports = function(gulp, plugins, growl) {
 
 	gulp.task('watch:assets', function() {
 		// Watch assets
-		return gulp.watch(['views/**/*.{less,css,js,png,jpg,svg}', 'tasks/pipeline.js'], ['syncAssets'])
+		return gulp.watch(['views/**/*.{less,css,js,png,jpg,svg,jade}', 'tasks/pipeline.js'], ['syncAssets'])
 				.on('change', function(file) {
 					server.changed(file.path);
 				});
