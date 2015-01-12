@@ -1,23 +1,33 @@
 class Element {
-  static STATE_DIV = '_';
+  static STATE_SEPARATOR = '_';
+  static ELEMENT_SEPARATOR = '__';
 
-  constructor(rootEl) {
+  static buildElementClassName(blockName, elName) {
+    return blockName + Element.ELEMENT_SEPARATOR + elName;
+  }
+
+  static buildStateClassName(elName, stateName, stateValue) {
+    var className = elName + Element.STATE_SEPARATOR + stateName;
+    if (stateValue instanceof String) {
+      className += Element.STATE_SEPARATOR + stateValue;
+    }
+    return className;
+  }
+
+  constructor(rootEl, block) {
     this.$root = $(rootEl);
     this.name = 'element';
+    this.block = block;
   }
 
   setState(name, value) {
-    var className = this.name + '_' + name;
-    if (value instanceof String) {
-      className += '_' + value;
-    }
     this.removeState(name);
-    this.$root.addClass(className)
+    this.$root.addClass(Element.buildStateClassName(Element.buildElementClassName(this.block.name, this.name), name, value))
   }
 
   removeState(name) {
     this.$root[0].className = this.$root[0].className.split(' ').filter((className)=> {
-      return className.match(new RegExp(this.name + '_' + name + '(_.+)?'));
+      return className.match(new RegExp(this.name + Element.STATE_SEPARATOR + name + '(' + Element.STATE_SEPARATOR + '.+)?'));
     }).join(' ');
   }
 
@@ -72,7 +82,7 @@ class ElementCollection {
 
 export default class Block extends Element {
   constructor(rootEl, options) {
-    super(rootEl);
+    super(rootEl, this);
     this.name = 'block';
     this.options = options;
     this._elements = {};
@@ -83,9 +93,10 @@ export default class Block extends Element {
       return this._elements[elName];
     }
 
-    var $el = this.$root.find('.' + this.name + '__' + elName);
+    var $el = this.$root.find('.' + Element.buildElementClassName(this.name, elName));
     var elc = new ElementCollection();
     $el.each(function(i, el) {
+      el = new Element(el, this);
       elc.add(el);
     });
 
