@@ -4,7 +4,8 @@ module.exports = function (gulp, plugins) {
 			'clean:dev',
 			'styles:dev',
 			'scripts:dev',
-      'blocks:dev',
+			'blocks:dev',
+			'jsx:dev',
 			//'copy:dev',
 			cb
 		);

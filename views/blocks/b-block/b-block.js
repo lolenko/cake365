@@ -27,7 +27,9 @@ class Element {
 
   removeState(name) {
     this.$root[0].className = this.$root[0].className.split(' ').filter((className)=> {
-      return className.match(new RegExp(this.name + Element.STATE_SEPARATOR + name + '(' + Element.STATE_SEPARATOR + '.+)?'));
+      return className.match(
+        new RegExp(Element.buildStateClassName(Element.buildElementClassName(this.block.name, this.name), name) + '(' + Element.STATE_SEPARATOR + '.+)?')
+      );
     }).join(' ');
   }
 

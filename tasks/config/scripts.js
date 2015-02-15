@@ -11,7 +11,6 @@
 
 module.exports = function(gulp, plugins, growl) {
 
-  // Compile and Automatically Prefix Stylesheets
   gulp.task('scripts:dev', function () {
     return gulp.src([
       'views/global/**/*.js',
