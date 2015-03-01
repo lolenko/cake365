@@ -18,6 +18,10 @@
  * `node app.js --silent --port=80 --prod`
  */
 
+require("babel/register")({
+  extensions: [".es6", ".jsx"]
+});
+
 // Ensure a "sails" can be located:
 (function() {
   var sails;
