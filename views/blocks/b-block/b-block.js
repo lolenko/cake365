@@ -2,6 +2,7 @@ class Element {
   static STATE_SEPARATOR = '_';
   static ELEMENT_SEPARATOR = '__';
 
+
   static buildElementClassName(blockName, elName) {
     return blockName + Element.ELEMENT_SEPARATOR + elName;
   }
@@ -115,4 +116,4 @@ export default class Block extends Element {
       delete this._elements[el.name];
     }
   }
-};
+}
