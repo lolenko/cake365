@@ -1,6 +1,6 @@
 class Element {
-  static STATE_SEPARATOR = '_';
-  static ELEMENT_SEPARATOR = '__';
+  //static STATE_SEPARATOR = '_';
+  //static ELEMENT_SEPARATOR = '__';
 
 
   static buildElementClassName(blockName, elName) {
