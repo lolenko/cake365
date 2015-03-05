@@ -30,7 +30,13 @@ module.exports.views = {
   *                                                                           *
   ****************************************************************************/
 
-  engine: 'jade',
+  engine: {
+    ext: 'jsx',
+    fn: function (pathName, locals, cb) {
+      var te = require('../views/lib/tmplExpress');
+      return te.renderFile(pathName, locals, cb);
+    }
+  },
 
 
   /****************************************************************************

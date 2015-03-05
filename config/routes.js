@@ -33,7 +33,8 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage'
+    view: 'test'
+    //view: 'homepage'
   },
 
   'GET /admin': 'admin/ModelController.index',
