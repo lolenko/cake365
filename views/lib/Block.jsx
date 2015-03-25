@@ -2,13 +2,35 @@ var Element = require('./Element');
 
 class Block {
     constructor(attrs, children) {
-        this.attrs = attrs;
-        this.children = children;
-        this.tmpl = this.template();
+        this.name = this.constructor.name.toLowerCase();
+        this.attrs = attrs || {};
+        this.children = children || [];
+        this.rootNode = this.template();
+        this.rootNode.name = this.attrs.element;
+        this.rootNode.addClass(this.name);
+
+        this.each((child) => {
+            if (child instanceof Block || child instanceof Element) {
+                child.setParentBlock(this);
+            }
+        });
     }
 
-    setElName(elName) {
-        this.tmpl.setElName(elName);
+    setNodeName(nodeName) {
+        this.rootNode.setNodeName(nodeName);
+    }
+
+    setParentBlock(block) {
+        this.rootNode.setParentBlock(block);
+    }
+
+    each(cb) {
+        this.rootNode.children.forEach((child) => {
+            if (child instanceof Block || child instanceof Element) {
+                child.children.forEach(cb);
+            }
+            cb(child);
+        });
     }
 
     template() {
@@ -20,7 +42,7 @@ class Block {
     }
 
     toString() {
-        return this.tmpl.toString();
+        return this.rootNode.toString();
     }
 }
 
