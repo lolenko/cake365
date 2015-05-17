@@ -9,10 +9,10 @@ class Jopa extends Block {
                 Мой первый
                 <div element="baran">
                     блок
-                    <div element="baran-inner">
+                    <div element="baran-inner" mod-fooo>
                         { this.children.join() }
                     </div>
-                    <Button element="button">Кнопочка</Button>
+                    <Button element="button" mod-hidden mod-disabled="true">Кнопочка</Button>
                 </div>
             </div>
         )

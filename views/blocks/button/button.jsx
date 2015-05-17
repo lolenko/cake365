@@ -5,9 +5,9 @@ class Button extends Block {
     template() {
         return (
             <div>
-                <div element="foo">
+                <button element="foo">
                     { this.children.join() }
-                </div>
+                </button>
             </div>
         )
     }
